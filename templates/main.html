@@ -1,0 +1,69 @@
+<html>
+<head>
+    <script src ="http://code.jquery.com/jquery-2.1.1.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <style type="text/css">
+        .centerdv
+        {
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 5%;
+            text-align: center;
+        }
+        .formcss
+        {
+            margin-top: 5%;
+            margin-bottom: 5%;
+            width: 80%;
+            margin-left: auto;
+            margin-right:auto;
+            text-align: center;
+        }
+    </style>
+    <div class="jumbotron container centerdv">
+        <h1>Simple Survey Site</h1>
+        <p>Take surveys here</p>
+        <p>
+            <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#surveyIdModal">Take a survey</a>
+            <a class="btn btn-info btn-lg" role="button" data-toggle="modal" data-target="#adminModal">Admin login</a>
+        </p>
+    </div>
+    <div class="modal fade" role="dialog" id="surveyIdModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Enter a survey id</h4>
+                </div>
+                <form method="POST" action = "{% url 'load_survey' %}" class="formcss">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" name="survey_view">
+                    <br>
+                    <input type="submit" class="btn btn-success" value="Go!">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" id="adminModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Login an Admin user</h4>
+                </div>
+                <form method="POST" action = "{% url 'admin-login' %}" class="formcss">
+                    {% csrf_token %}
+                    <b>Username:</b>
+                    <input type="text" class="form-control" name="username">
+                    <br>
+                    <b>Password:</b>
+                    <input type="text" class="form-control" name="password">
+                    <br>
+                    <input type="submit" class="btn btn-success" value="Go!">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
