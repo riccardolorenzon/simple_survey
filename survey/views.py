@@ -11,7 +11,7 @@ def survey_view(request, survey_id = None):
     try:
         survey = Survey.objects.get(id=survey_id)
         questions = survey.question_set.all()
-        ctx = {'survey' : survey, 'questions' : questions}
+        ctx = {'survey':survey, 'questions':questions}
     except:
         return render(request, "surveynotfound-error.html", {'sv_id' : survey_id})
     return render(request, "survey-take.html", ctx)
