@@ -37,7 +37,7 @@
                 <div class="modal-header">
                     <h4>Enter a survey id</h4>
                 </div>
-                <form method="POST" action = "{% url 'load_survey' %}" class="formcss">
+                <form method="POST" action = "{% url 'load-survey' %}" class="formcss">
                     {% csrf_token %}
                     <input type="text" class="form-control" name="survey_view">
                     <br>

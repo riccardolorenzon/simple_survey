@@ -75,7 +75,7 @@ def survey_create(request):
     newSurvey = Survey()
     newSurvey.title = request.POST['survey_title']
     newSurvey.save()
-    request.session['current_survey'] = newSurvey.id
+    request.session['current-survey'] = newSurvey.id
     return redirect('admin-question-add-view')
 
 def question_add(request):

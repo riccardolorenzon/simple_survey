@@ -23,14 +23,14 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'root' %}">Survey site</a>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% ulr 'admin-survey-create-view' %}">Create Survey</a></li>
+                <li><a href="{% url 'admin-survey-create-view' %}">Create Survey</a></li>
                 <li><a href="#">View Survey Data</a></li>
             </ul>
         </div>
     </div>
     <div class="centerdv container">
         <div class="page-header">
-            <h1>Add a Choice to {{ question.question_text }}</h1>
+            <h1>Add a Choice to {{ question }}</h1>
         </div>
         <br>
         <form method="POST" class="centerform" action="{% url 'admin-choice-add' %}">

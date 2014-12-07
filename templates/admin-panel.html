@@ -13,21 +13,12 @@
             margin-top: 5%;
             text-align: center;
         }
-        .formcss
-        {
-            margin-top: 5%;
-            margin-bottom: 5%;
-            width: 80%;
-            margin-left: auto;
-            margin-right:auto;
-            text-align: center;
-        }
     </style>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'root' %}">Survey site</a>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% ulr 'admin-survey-create-view' %}">Create Survey</a></li>
+                <li><a href="{% url 'admin-survey-create-view' %}">Create Survey</a></li>
                 <li><a href="#">View Survey Data</a></li>
             </ul>
         </div>
@@ -56,9 +47,9 @@
                             {{ survey.title }}
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{% url 'answer-detail' %}">
+                            <!--<a class="btn btn-primary" href="{% url 'answer-detail' %}">
                                 View Answers
-                            </a>
+                            </a>-->
                         </td>
                         <td>
                             <form method="POST" action="{% url 'admin-survey-delete' %}">
