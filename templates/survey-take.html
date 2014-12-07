@@ -26,7 +26,7 @@
     <div class="jumbotron container centerdv">
         <h2>{{ survey.title }}</h2>
         <form method="POST" action="{% url 'fill-survey' %}">
-            <input type="hidden" name="survey_id" value="{{ survey_id }}">
+            <input type="hidden" name="survey_id" value="{{ survey.id }}">
             {% csrf_token %}
             {% for question in questions %}
                 <div class="container centerdv">

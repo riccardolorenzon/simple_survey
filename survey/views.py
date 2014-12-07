@@ -27,7 +27,7 @@ def survey_fill(request):
     answer.save()
     questions = orig_survey.question_set.all()
     for question in questions:
-        question_post = request.POST['question']
+        question_post = request.POST['question' + str(question.id)]
         QA = QuestionAnswer()
         QA.answer = Choice.objects.get(id = int(question_post))
         QA.survey_answer = answer
