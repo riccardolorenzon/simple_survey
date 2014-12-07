@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from models import Survey, SurveyAnswer, QuestionAnswer, Choice
+from models import Survey, SurveyAnswer, QuestionAnswer, Choice, Question
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
@@ -54,3 +54,45 @@ def survey_delete(request):
     sv_del = Survey.objects.get(id=int(survey_deletion))
     sv_del.delete()
     return redirect('admin-panel')
+
+def admin_answers(request, survey_id):
+    survey = Survey.objects.get(id = survey_id)
+    answers = survey.surveyanswer_set.all()
+    ctx = {'answers' : answers, 'survey' : survey}
+    return render(request, 'admin-survey-detail.html', ctx)
+
+def survey_create_view(request):
+    return render(request, 'survey-create.html', {})
+
+def question_add_view(request):
+    return render(request, 'question-add.html', {})
+
+def choice_add_view(request):
+    question = Question.objects.get(id=int(request.session['current_question']))
+    return render(request, 'choice-add.html', {'question' : question})
+
+def survey_create(request):
+    newSurvey = Survey()
+    newSurvey.title = request.POST['survey_title']
+    newSurvey.save()
+    request.session['current_survey'] = newSurvey.id
+    return redirect('admin-question-add-view')
+
+def question_add(request):
+    survey_add = Survey.objects.get(id=int(request.session['current-survey']))
+    new_question = Question()
+    new_question.question_text = request.POST['question_text']
+    survey_add.question_set.add(new_question)
+    new_question.save()
+    survey_add.save()
+    request.session['current_question'] = new_question.id
+    return redirect('admin-choice-add-view')
+
+def choice_add(request):
+    question = Question.objects.get(id =int(request.session['current_question']))
+    newChoice = Choice()
+    newChoice.choice_text = request.POST['choice_text']
+    question.choice_set.add(newChoice)
+    newChoice.save()
+    question.save()
+    return redirect('admin-choice-add-view')
