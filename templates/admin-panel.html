@@ -47,14 +47,14 @@
                             {{ survey.title }}
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{% url 'answer-detail' %}">
+                            <a class="btn btn-primary" href="./survey/{{ survey.id }}">
                                 View Answers
                             </a>
                         </td>
                         <td>
                             <form method="POST" action="{% url 'admin-survey-delete' %}">
                                 {% csrf_token %}
-                                <input type ="hidden" name ="sv_delete" value="{{ survey_id }}">
+                                <input type ="hidden" name ="sv_delete" value="{{ survey.id }}">
                                 <input type="submit" class="btn btn-danger" value="Delete Survey">
                             </form>
                         </td>
